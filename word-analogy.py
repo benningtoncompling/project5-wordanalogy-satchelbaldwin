@@ -123,6 +123,8 @@ class WordSolver:
         def record(success, filename):
             t_add = lambda x, y: (x[0] + y[0], x[1] + y[1])
             if filename not in self.results:
+                print(f"starting file {filename}")
+                print("")
                 self.results[filename] = (0, 0)
             else:
                 mod = (1, 1) if success else (0, 1)
@@ -140,7 +142,6 @@ class WordSolver:
                         self.similarity_type
                     )
                 if solution == proper_solution:
-                    print(f"CORRECT!: {problem} {solution}")
                     record(True, filename)
                 else:
                     record(False, filename)
@@ -149,11 +150,12 @@ class WordSolver:
             except KeyError as err:
                 record(False, filename)
                 file_handles[output_path].write(f'{problem[0]} {problem[1]} {problem[2]} NOSOLUTION\n')
+            print(u'\u001b[2A')
+            print(f"successes, attempts: {self.results[filename]}")
         for name, handle in file_handles.items():
             handle.close()
 
         # write eval file
-        print(f'{self.results}')
         totals = (0, 0)
         for filename, (successes, attempts) in self.results.items():
             totals = (totals[0] + successes, totals[1] + attempts)
