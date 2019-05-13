@@ -1,0 +1,2 @@
+python word-analogy.py resources/vector_model.txt resources/GoogleTestSet/ "output/output${NORM}${SIM}" "output/output${NORM}${SIM}/eval.txt" ${NORM} ${SIM}
+
