@@ -160,7 +160,8 @@ class WordSolver:
         for filename, (successes, attempts) in self.results.items():
             totals = (totals[0] + successes, totals[1] + attempts)
             efile.write(f'{filename}\nACCURACY: {(successes / attempts)*100}% ({successes}/{attempts})\n')
-        efile.write(f'TOTAL ACCURACY: {(successes / attempts)*100}% ({successes}/{attempts})\n')
+        efile.write(f'TOTAL ACCURACY: {(totals[0] / totals[1])*100}% ({totals[0]}/{totals[1]})\n')
+        print(f'TOTAL ACCURACY: {(totals[0] / totals[1])*100}% ({totals[0]}/{totals[1]})\n')
 
         efile.close()
 
